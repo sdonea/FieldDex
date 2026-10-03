@@ -58,7 +58,6 @@ export const speciesUrl = (lat: number, lng: number, d1: string, d2?: string) =>
   (d2 ? `&d2=${d2}` : "") +
   "&quality_grade=research,needs_id&per_page=200";
 export const taxonUrl = (id: number) => `https://www.inaturalist.org/taxa/${id}`;
-export const taxonApiUrl = (id: number) => `https://api.inaturalist.org/v1/taxa/${id}`;
 export const displayName = (t: Taxon) => t.preferred_common_name || t.name;
 
 export const rarestFirst = (a: SpeciesCount, b: SpeciesCount) =>

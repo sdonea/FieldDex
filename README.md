@@ -44,7 +44,6 @@ within 10 km of Evansville that day and keeps the one with the fewest observatio
 | **Search** | A ZIP (looked up on Zippopotam.us) or your browser's location becomes a point. One request to iNaturalist's `species_counts` returns every species observed within 10 km in the last 7 days. |
 | **Type** | The species' iconic group picks its type: birds are Flying, plants Grass, insects and spiders Bug, fungi Poison, mammals Normal, reptiles Dragon, amphibians, fish and molluscs Water, anything else Mystery. |
 | **Rarity** | The global observation count sets the tier: under 2,000 Legendary, under 10,000 Rare, under 100,000 Uncommon, else Common. Catch difficulty is the same number on a log scale, 5 stars at 1,000 or fewer down to 1 star at a million. |
-| **Flip** | Tap a card to turn it over: the back is its dex entry (the Wikipedia summary iNaturalist keeps, plus class, order and family), fetched on the first flip. Mark it caught and a Caught counter tracks your collection in this browser. |
 | **Foil** | Rare and Legendary cards are holographic: the foil follows your pointer and the card tilts toward it. Pure CSS driven by two custom properties; off under `prefers-reduced-motion`. |
 | **Share** | Searching by ZIP puts it in the address bar, so `?zip=47708` links straight to a deck. |
 | **A README that updates itself** | Every evening a GitHub Action finds the rarest species logged near Evansville, IN that day and puts it at the top of this page ([`docs/daily-dex.csv`](docs/daily-dex.csv) keeps the history). |
@@ -65,7 +64,7 @@ within 10 km of Evansville that day and keeps the one with the fewest observatio
 |---|---|
 | `lib/dex.ts` | Types, rarity thresholds, catch stars, API URLs (shared with the daily bot) |
 | `components/FieldDex.tsx` | Search, every state (loading, empty, unknown ZIP, location denied, retry), type filter |
-| `components/DexCard.tsx` | The card: front, flip-side entry, caught toggle, pointer-driven foil |
+| `components/DexCard.tsx` | The card and its pointer-driven foil |
 | `scripts/daily-dex.mjs` + `.github/workflows/daily-dex.yml` | The self-updating README |
 
 ## Data

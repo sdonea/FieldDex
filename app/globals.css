@@ -134,37 +134,21 @@ body {
 
   .dotted { border-top: 3px dotted #8a98a8; }
 
-  /* Card: the article tilts toward the pointer, .flipper turns it over, each .face is grid paper the
-     inner panels float on. Two layers so the quick tilt and the slower flip get their own timing. */
+  /* Card body: finer grid paper the inner panels float on. */
   .card {
     position: relative;
-    perspective: 1400px;
-    cursor: pointer;
-    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-    transition: transform 0.25s ease-out;
-  }
-  .flipper {
-    position: relative;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-  .card[data-flipped] .flipper { transform: rotateY(180deg); }
-  .face {
-    position: relative;
-    height: 100%;
-    backface-visibility: hidden;
     background-color: #f4f4f4;
     background-image: linear-gradient(#dcdcdc 1px, transparent 1px), linear-gradient(90deg, #dcdcdc 1px, transparent 1px);
     background-size: 16px 16px;
     border: 2px solid var(--frame);
     border-radius: 10px;
     box-shadow: 5px 5px 0 var(--drop);
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.25s ease-out;
   }
-  .face.back { position: absolute; inset: 0; transform: rotateY(180deg); overflow-y: auto; }
-  .face > :not(.foil) { position: relative; z-index: 1; }
-  .card[data-tier="Legendary"] .face { border-color: #8a6d00; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #fecd00; }
-  .card[data-tier="Rare"] .face { border-color: #2c5bbd; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #5c91f6; }
+  .card > :not(.foil) { position: relative; z-index: 1; }
+  .card[data-tier="Legendary"] { border-color: #8a6d00; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #fecd00; }
+  .card[data-tier="Rare"] { border-color: #2c5bbd; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #5c91f6; }
 
   /* Holographic foil. Pointer position comes in as --mx/--my (glare) and --px/--py (rainbow shift).
      It sits under the opaque text panels (z-index), so it only shows on the frame and over the photo.
@@ -193,6 +177,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .foil { display: none; }
   .card { transform: none; transition: none; }
-  .flipper { transition: none; }
   .cursor, .scanbar { animation: none; }
 }
