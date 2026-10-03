@@ -16,6 +16,16 @@ type State =
 
 class UnknownZip extends Error {}
 
+// Caught species live in this browser only: a list of taxon ids.
+const CAUGHT_KEY = "fielddex.caught";
+function loadCaught() {
+  try {
+    return new Set<number>(JSON.parse(localStorage.getItem(CAUGHT_KEY) ?? "[]"));
+  } catch {
+    return new Set<number>(); // no storage (prerender, private mode): start empty
+  }
+}
+
 // Local calendar date seven days ago, as iNaturalist's d1 wants it.
 const weekAgo = () => new Date(Date.now() - 7 * 864e5).toLocaleDateString("en-CA");
 
@@ -32,6 +42,15 @@ export function FieldDex() {
   const [zip, setZip] = useState("");
   const [filter, setFilter] = useState<DexType | "All">("All");
   const latest = useRef(0); // only the newest search may write state
+  const [caught, setCaught] = useState(loadCaught);
+  function toggleCaught(id: number) {
+    const next = new Set(caught);
+    if (!next.delete(id)) next.add(id);
+    setCaught(next);
+    try {
+      localStorage.setItem(CAUGHT_KEY, JSON.stringify([...next]));
+    } catch {}
+  }
 
   async function run(query: Query) {
     const id = ++latest.current;
@@ -163,18 +182,20 @@ export function FieldDex() {
             </div>
           </Notice>
         )}
-        {state.kind === "results" && <Results {...state} filter={filter} setFilter={setFilter} />}
+        {state.kind === "results" && <Results {...state} filter={filter} setFilter={setFilter} caught={caught} toggleCaught={toggleCaught} />}
       </div>
     </>
   );
 }
 
-function Results({ place, total, species, filter, setFilter }: {
+function Results({ place, total, species, filter, setFilter, caught, toggleCaught }: {
   place: string;
   total: number;
   species: SpeciesCount[];
   filter: DexType | "All";
   setFilter: (t: DexType | "All") => void;
+  caught: Set<number>;
+  toggleCaught: (id: number) => void;
 }) {
   const numbered = useMemo(() => species.map((s, i) => ({ s, no: i + 1, type: dexType(s.taxon.iconic_taxon_name) })), [species]);
   const counts = useMemo(() => {
@@ -211,10 +232,16 @@ function Results({ place, total, species, filter, setFilter }: {
             {t} <span className="font-normal">{n}</span>
           </button>
         ))}
+        <p className="silk ml-auto self-center rounded-[5px] border-2 border-[var(--slate)] bg-white px-3 py-1.5 text-[14px] font-bold">
+          Caught <span className="tabular-nums">{species.filter((s) => caught.has(s.taxon.id)).length} / {species.length}</span>
+        </p>
       </div>
+      <p className="mt-3 text-center text-[var(--ink-soft)]"><span className="bg-white px-1">Tap a card to turn it over and read its entry.</span></p>
 
       <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,290px),1fr))] gap-6">
-        {shown.map(({ s, no }) => <DexCard key={s.taxon.id} entry={s} no={no} />)}
+        {shown.map(({ s, no }) => (
+          <DexCard key={s.taxon.id} sighting={s} no={no} caught={caught.has(s.taxon.id)} onToggleCaught={() => toggleCaught(s.taxon.id)} />
+        ))}
       </div>
     </section>
   );
