@@ -162,6 +162,10 @@ body {
     box-shadow: 5px 5px 0 var(--drop);
   }
   .face.back { position: absolute; inset: 0; transform: rotateY(180deg); overflow-y: auto; }
+  /* WebKit ignores backface-visibility on composited children (photo, foil, raised panels), so the face
+     turned away is also hidden outright, switched at the 90° midpoint of the flip. */
+  .face { -webkit-backface-visibility: hidden; transition: visibility 0s linear 0.3s; }
+  .card[data-flipped] .face:not(.back), .card:not([data-flipped]) .face.back { visibility: hidden; }
   .face > :not(.foil) { position: relative; z-index: 1; }
   .card[data-tier="Legendary"] .face { border-color: #8a6d00; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #fecd00; }
   .card[data-tier="Rare"] .face { border-color: #2c5bbd; box-shadow: 5px 5px 0 var(--drop), 0 0 0 3px #5c91f6; }
@@ -193,6 +197,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .foil { display: none; }
   .card { transform: none; transition: none; }
-  .flipper { transition: none; }
+  .flipper, .face { transition: none; }
   .cursor, .scanbar { animation: none; }
 }
