@@ -93,11 +93,15 @@ for the embossed look the references get from their outlined letters.
 
 ## Motion
 
+- Flip: clicking a card (or its ENTRY plate) turns it over in 0.6s to the back face: name strip, an entry
+  box with the red side bars, a class/order/family panel with dotted dividers, and MARK CAUGHT / BACK plates.
+  The tilt and the flip sit on separate layers so each keeps its own timing.
+
 - Rare and Legendary: a holographic foil over the photo and card face. Pointer position sets `--mx`/`--my`;
   CSS draws a rainbow `repeating-linear-gradient` plus a glare `radial-gradient` with `color-dodge`, and tilts
   the card up to 6°. Foil only sits on the photo and frame; text panels are opaque so contrast is unaffected.
 - Loading: a blinking pixel cursor and a stepped scan bar (`steps()` timing, like a handheld redraw).
-- `prefers-reduced-motion`: foil, tilt, blink and scan all off.
+- `prefers-reduced-motion`: foil, tilt, blink and scan all off; the flip swaps faces instantly.
 
 ## Deliberately not taken
 
