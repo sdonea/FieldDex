@@ -13,7 +13,7 @@ iNaturalist within 10 km this week becomes a collectible card, rarest first.**
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 ![Data: iNaturalist](https://img.shields.io/badge/data-iNaturalist-74ac00)
 
-**[Open Field Dex →](https://fielddex.vercel.app)**
+**[Open Field Dex →](https://fielddex-delta.vercel.app)**
 
 [How it works](#how-it-works) · [Under the hood](#under-the-hood) · [Data](#data) · [Run it](#run-it)
 

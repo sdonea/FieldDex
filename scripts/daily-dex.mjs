@@ -1,9 +1,9 @@
 // Daily README update (run by .github/workflows/daily-dex.yml, or by hand): asks iNaturalist for every species
 // logged within 10 km of Evansville today, picks the rarest, rewrites the block between the daily-dex markers
-// in README.md and appends a line to docs/daily-dex.csv. A day with no sightings changes nothing.
+// in README.md and logs the pick to docs/daily-dex.csv. A day with no sightings changes nothing.
 //
 //   node scripts/daily-dex.mjs            (Node 22.18+: imports lib/dex.ts directly)
-import { appendFile, readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { displayName, rarestFirst, rarity, speciesUrl, taxonUrl } from "../lib/dex.ts";
 
 const EVANSVILLE = { lat: 37.9718, lng: -87.572 }; // ZIP 47708, from api.zippopotam.us
@@ -37,5 +37,6 @@ const readme = await readFile("README.md", "utf8");
 const start = readme.indexOf("<!-- daily-dex:start -->"), end = readme.indexOf("<!-- daily-dex:end -->");
 if (start < 0 || end < 0) throw new Error("README.md has no daily-dex markers");
 await writeFile("README.md", readme.slice(0, start) + block + readme.slice(end + "<!-- daily-dex:end -->".length));
-await appendFile("docs/daily-dex.csv", `${today},${taxon.id},"${name}","${taxon.name}",${taxon.observations_count},${tier}\n`);
+const log = (await readFile("docs/daily-dex.csv", "utf8")).split("\n").filter((l) => l && !l.startsWith(`${today},`)); // re-runs replace the day
+await writeFile("docs/daily-dex.csv", [...log, `${today},${taxon.id},"${name}","${taxon.name}",${taxon.observations_count},${tier}`, ""].join("\n"));
 console.log(`${today}: ${name} (${taxon.name}), ${tier}, 1 of ${logged}`);
