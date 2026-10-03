@@ -115,7 +115,8 @@ export function FieldDex() {
           </button>
         </form>
         <p id="zip-help" className="mt-3 text-[var(--screen-deep)]">
-          Every species logged on iNaturalist within 10 km in the last 7 days, rarest first.
+          Every plant, bird, bug and fungus logged on iNaturalist within 10 km this week becomes a card. The ones almost
+          nobody has ever logged come first.
         </p>
       </section>
 

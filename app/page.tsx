@@ -13,10 +13,6 @@ export default function Home() {
       </header>
 
       <main className="mx-auto min-h-[calc(100vh-60px)] max-w-6xl px-4 pb-16 pt-8 sm:px-6">
-        <p className="panel sidebars mb-8 max-w-2xl px-5 py-3 text-[20px] leading-snug">
-          A field guide that fills itself in. Every plant, bird, bug and fungus people logged near you this week becomes a
-          card, and the ones almost nobody has ever logged come first.
-        </p>
         <FieldDex />
       </main>
 
