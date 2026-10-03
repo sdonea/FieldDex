@@ -79,7 +79,7 @@ for the embossed look the references get from their outlined letters.
 3. **Photo window**: square photo inside a framed box with a red top stripe (the INFO portrait box).
 4. **Badges row**: type badge + rarity badge.
 5. **Stat panel** with a dotted divider (the HT/WT panel): `SEEN` sightings near you this week, `CATCH` 1–5
-   pixel stars, then `1 of N ever logged`.
+   pixel stars, then `{local} of N ever logged` (this week's local sightings out of the global total).
 6. **Footer panel** with red side bars (INFO description box): photo credit and the iNaturalist link.
 
 ## Page layout

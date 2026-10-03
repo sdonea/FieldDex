@@ -26,7 +26,7 @@ const photo = taxon.default_photo;
 const block = `<!-- daily-dex:start -->
 ### Today's rarest find near Evansville, IN · ${today}
 
-${photo ? `<a href="${taxonUrl(taxon.id)}"><img src="${photo.medium_url}" width="280" alt="Photo of ${name} (${taxon.name})" /></a>\n\n` : ""}**${name}** (*${taxon.name}*) · **${tier}** · 1 of ${logged} ever logged · seen ${count}× today · [iNaturalist page](${taxonUrl(taxon.id)})
+${photo ? `<a href="${taxonUrl(taxon.id)}"><img src="${photo.medium_url}" width="280" alt="Photo of ${name} (${taxon.name})" /></a>\n\n` : ""}**${name}** (*${taxon.name}*) · **${tier}** · seen ${count}× today, ${count} of ${logged} ever logged · [iNaturalist page](${taxonUrl(taxon.id)})
 
 <sub>${photo ? `Photo: ${photo.attribution}. ` : ""}Updated every evening by a GitHub Action: it asks iNaturalist for every species logged
 within 10 km of Evansville that day and keeps the one with the fewest observations worldwide. Every day's pick is logged in
@@ -39,4 +39,4 @@ if (start < 0 || end < 0) throw new Error("README.md has no daily-dex markers");
 await writeFile("README.md", readme.slice(0, start) + block + readme.slice(end + "<!-- daily-dex:end -->".length));
 const log = (await readFile("docs/daily-dex.csv", "utf8")).split("\n").filter((l) => l && !l.startsWith(`${today},`)); // re-runs replace the day
 await writeFile("docs/daily-dex.csv", [...log, `${today},${taxon.id},"${name}","${taxon.name}",${taxon.observations_count},${tier}`, ""].join("\n"));
-console.log(`${today}: ${name} (${taxon.name}), ${tier}, 1 of ${logged}`);
+console.log(`${today}: ${name} (${taxon.name}), ${tier}, ${count} of ${logged}`);

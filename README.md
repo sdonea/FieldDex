@@ -30,7 +30,7 @@ someone caught on a leaf down the road might be one of a few hundred ever logged
 
 <a href="https://www.inaturalist.org/taxa/143803"><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/24937022/medium.jpg" width="280" alt="Photo of low smartweed (Persicaria longiseta)" /></a>
 
-**low smartweed** (*Persicaria longiseta*) · **Uncommon** · 1 of 51,718 ever logged · seen 1× today · [iNaturalist page](https://www.inaturalist.org/taxa/143803)
+**low smartweed** (*Persicaria longiseta*) · **Uncommon** · seen 1× today, 1 of 51,726 ever logged · [iNaturalist page](https://www.inaturalist.org/taxa/143803)
 
 <sub>Photo: (c) Brad Walker, some rights reserved (CC BY-NC), uploaded by Brad Walker. Updated every evening by a GitHub Action: it asks iNaturalist for every species logged
 within 10 km of Evansville that day and keeps the one with the fewest observations worldwide. Every day's pick is logged in

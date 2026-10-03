@@ -79,7 +79,7 @@ export function DexCard({ entry, no }: { entry: SpeciesCount; no: number }) {
         </div>
         <div className="dotted py-1.5 text-center">
           <dt className="sr-only">Global rarity</dt>
-          <dd>1 of <span className="tabular-nums">{taxon.observations_count.toLocaleString("en-US")}</span> ever logged</dd>
+          <dd>{count} of <span className="tabular-nums">{taxon.observations_count.toLocaleString("en-US")}</span> ever logged</dd>
         </div>
       </dl>
 
