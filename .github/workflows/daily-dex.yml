@@ -1,0 +1,39 @@
+# Once a day: find the rarest species logged near Evansville today and put it on the README
+# (scripts/daily-dex.mjs). Runs late in the Central-time evening so the day's uploads are in.
+name: Daily dex
+
+on:
+  schedule:
+    - cron: "30 4 * * *" # 23:30 CDT / 22:30 CST
+  workflow_dispatch: # Actions tab → Daily dex → Run workflow
+
+permissions:
+  contents: write
+
+concurrency: daily-dex
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Pick today's rarest find
+        run: |
+          # iNaturalist has bad minutes; wait them out rather than lose the day
+          for i in 1 2 3; do
+            node scripts/daily-dex.mjs && exit 0
+            [ $i -lt 3 ] && sleep 300
+          done
+          exit 1
+      - name: Commit the README
+        run: |
+          git diff --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md docs/daily-dex.csv
+          git commit -m "Daily dex $(tail -1 docs/daily-dex.csv | cut -d, -f1): $(tail -1 docs/daily-dex.csv | cut -d, -f3 | tr -d '\"')"
+          git push
