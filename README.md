@@ -26,13 +26,13 @@ is. Field Dex turns a week of community sightings into a deck: the dove on your 
 someone caught on a leaf down the road might be one of a few hundred ever logged on Earth. That one goes first.
 
 <!-- daily-dex:start -->
-### Today's rarest find near Evansville, IN · 2026-10-02
+### Today's rarest find near Evansville, IN · 2026-11-24
 
-<a href="https://www.inaturalist.org/taxa/143803"><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/24937022/medium.jpg" width="280" alt="Photo of low smartweed (Persicaria longiseta)" /></a>
+<a href="https://www.inaturalist.org/taxa/5206"><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/185927970/medium.jpg" width="280" alt="Photo of Red-shouldered Hawk (Buteo lineatus)" /></a>
 
-**low smartweed** (*Persicaria longiseta*) · **Uncommon** · seen 1× today, 1 of 51,726 ever logged · [iNaturalist page](https://www.inaturalist.org/taxa/143803)
+**Red-shouldered Hawk** (*Buteo lineatus*) · **Common** · seen 1× today, 1 of 182,388 ever logged · [iNaturalist page](https://www.inaturalist.org/taxa/5206)
 
-<sub>Photo: (c) Brad Walker, some rights reserved (CC BY-NC), uploaded by Brad Walker. Updated every evening by a GitHub Action: it asks iNaturalist for every species logged
+<sub>Photo: (c) spinomaly, some rights reserved (CC BY-NC). Updated every evening by a GitHub Action: it asks iNaturalist for every species logged
 within 10 km of Evansville that day and keeps the one with the fewest observations worldwide. Every day's pick is logged in
 <a href="docs/daily-dex.csv">docs/daily-dex.csv</a>.</sub>
 <!-- daily-dex:end -->
